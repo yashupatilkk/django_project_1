@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% block title %}
+{{ user.username }}'s cart
+
+
+{% endblock %}
+
+{% block content %}
+<table class="table">
+    <thead>
+    <th>
+        product
+    </th>
+    <th>
+        price
+    </th>
+    <th>
+        Quantity
+    </th>
+    <th>
+        sub total
+    </th>
+</thead>
+<tbody>
+
+{% for item in cart_items %}
+<tr id="cart-item-{{item.id}}">
+    <td>
+        {{item.product.name}}
+    </td>
+    <td>
+        {{item.product.price}}
+    </td>
+    <!-- <td>
+        {{item.quantity}}
+    </td> -->
+    <td class="grid">
+        <div class="row w-100">
+            <button onclick="updateCart('{% url 'remove_quantity' item.id %}', {{ item.id }}, false, '{{ csrf_token }}')" class="btn btn-outline-secondary col align-middle">
+                -
+            </button>
+            <p id="quantity-{{ item.id }}" class="col align-middle text-center">{{item.quantity}}</p>
+            <button onclick="updateCart('{% url 'add_quantity' item.id %}', {{ item.id }}, true, '{{ csrf_token }}')" class="btn btn-outline-secondary col align-middle">+</button>
+        </div>
+    </td>
+    <td id="total-price-{{ item.id }}">
+        {{item.get_total_price}}
+    </td>
+    <td>
+        <a href="{% url 'del_cart' item.id %}" class="btn btn-danger">Remove from Cart</a>
+    </td>
+    
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+<p><strong>Total: Rs.<span id="overall-total">{{ total_price }}</span></strong></p>
+
+</table>
+<table>
+    <tr>
+        <td>
+            name
+        </td>
+        
+    </tr>
+    <tr>
+        total
+    </tr>
+</table>
+<a href="{% url 'prod_page' %}" class="text-center">Shop More</a>
+
+{% endblock %}

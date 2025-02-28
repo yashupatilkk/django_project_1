@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+YashuVision | Registration
+{% endblock %}
+{% block content %}
+<div class="from-div">
+    <form class="from-div">
+{% csrf_token %}
+{{ form.as_p }}
+ <button class="btn btn-secondary">Registration
+
+ </button>
+    </form>
+</div>
+{% endblock %}

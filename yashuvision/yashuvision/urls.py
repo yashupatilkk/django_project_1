@@ -16,8 +16,25 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+#importing the follwing to allow media folder to be available in the development server.
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('mainapp.urls'))
+    path('', include('mainapp.urls')),
+    path('',include('cart.urls')),
+    path('authentication/',include('authentication.urls')),#Including our authentication app's urls
+    # to include the paths from django's inbiilt authentication from django.comtrib.auth
+    path('authentication/',include('django.contrib.auth.urls'))
 ]
+
+if settings.DEBUG == True:
+    urlpatterns += static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
+
+    #in debug mode,during development,django will help the media folder and act as qa media server
+    #but ,during deployment ,this debug will be turned off for security purposes.
+    #debug mode throws exceptions into the front end to help deebugvthe backend during development.
+    #this must be turned off by changing the value of "dubug" variable in django setting.py,
+    #the above line of code enable django server to include the media folder in hosting during mode.
+

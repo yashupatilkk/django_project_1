@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+YashuVision | Log in
+{% endblock %}
+{% block content %}
+<div class="form-div">
+    <form class="form-div" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-secondary" type="submit">
+            Log in
+        </button>
+    </form>
+</div>
+{% endblock %}

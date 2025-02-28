@@ -1,0 +1,44 @@
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+   
+
+}
+
+body {
+ 
+    header {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        height: 50px;
+      
+    }
+
+    main {
+        margin: auto;   
+        margin-top: 200px;
+        max-width: 900px;
+        align-items: center;
+        text-align: center;
+    
+       
+
+    
+
+
+        div.class-group {
+            div.card {
+                width: 100%;
+         
+
+                div.card-img {
+                    height: auto;
+                }
+            }
+        }
+    }
+
+}

@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+product Details page
+{% endblock %}
+{% block content %}
+<div class="container_fluid">
+    <div class="row">
+        <div class="col">
+            <div class="img">
+                {% if prod.pic %}
+                <img src="" alt="">
+                {% else %}
+                product has no picture...
+                {% endif %}
+
+            </div>
+        </div>
+        <div class="col">
+            <div class="row">
+                <h1>{{prod.name}}</h1>
+                <p>
+                    {{ prod.desc }}
+                </p>
+                <span>
+                    &#8377; {{ prod.price }}
+                </span>
+                {% if user.is_staff %}
+                <div class="row">
+                    <div class="col">
+                        <a href="{% url 'edit_prod' prod.pk %}" class="btn btn-outline-success">Edit product</a>
+                    </div>
+                    <div class="col">
+                        <a href="{% url 'del_prod' prod.pk %}" class="btn btn-outline-denger">Delete product</a>
+                    </div>
+                </div>
+                {% else %}
+                <button class="btn btn-primary">
+                    Add to cart
+                </button>
+                {% endif %}
+              </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

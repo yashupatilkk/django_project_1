@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+YashuVision | Products
+{% endblock %}
+
+{% block content %}
+<div class="card-group">
+  {%for product in prods %}
+
+
+
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{product.pic}}" class="card-img-top" alt="an image of {{product.name}}">
+      </div>
+      <div class="col-md-8">
+        <a href="{% url 'prod_details' product.id %}">
+          <h5 class="card-title">{{product.name }}</h5>
+        </a>
+        <div class="card-body">
+          <h5 class="card-title"></h5>
+          <p class="card-text">{{product.name}}</p>
+          <p class="card-text">&#8377; {{product.price}}</p>
+          <a href="{% url 'add_to_cart' product.id %}" class="btn btn-batten" style="border-radius: 10%; background-color: chartreuse; border-color: black;">Add to Cart</a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endfor %}
+</div>
+
+<!-- the django template code to show all products in the page start here -->
+{% endblock %}
